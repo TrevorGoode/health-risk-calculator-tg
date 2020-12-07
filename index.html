@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<meta charset="UTF-8">
+<title>
+Health Risk Calculator
+</title>
+</head>
+<h1>
+How Much of a Risk are You?
+</h1>
+
+<p>
+The purpose of this calculator is to determine your health conditions for insurance companies. The more problems a person has with their health, the more of a risk
+they are to an insurance company as they will have to pay more money for operations and medicine. This quiz will help give you an idea of where you stand. Please
+select answers that are most accurate to you and your body. If you don't know your BMI, you can use the provided calculator below the questions.
+</p>
+<body>
+<br>
+    <label>How old are you?</label>
+    <select id = "q1">
+        <option value = "0">Younger Than 30</option>
+        <option value = "10">Younger Than 45</option>
+        <option value = "20">Younger Than 60</option>
+        <option value = "30">60 or Older</option>
+    </select>
+    <br>
+    <br>
+    <label>What is your BMI?</label>
+    <select id = "q2">
+        <option value = "0">18.5 - 24.9</option>
+        <option value = "30">25.0 - 29.9</option>
+        <option value = "75">30.0 - 34.9</option>
+    </select>
+    <br>
+    <br>
+    <label>What is your blood pressure? (D = Diastolic, S = Systolic)</label>
+    <select id ="q3">
+        <option value = "0">D:Less Than 80, and S:Less Than 120</option>
+        <option value = "15">D:Less Than 80, and S:120 - 129</option>
+        <option value = "30">D:80 - 89, or S:130 - 139</option>
+        <option value = "75">D:90 or Higher, or S:140 or Higher</option>
+        <option value = "100">D:Higher Than 120, or S:Higher Than 180</option>
+    </select>
+    <br>
+    <br>
+    <label>Does diabetes run in your family?</label>
+    <select id = "q4">
+        <option value = "10">Yes</option>
+        <option value = "0">No</option>
+    </select>
+    <br>
+    <br>
+    <label>Does cancer run in your family?</label>
+    <select id = "q5">
+        <option value = "10">Yes</option>
+        <option value = "0">No</option>
+    </select>
+    <br>
+    <br>
+    <label>Does Alzheimer's run in your family?</label>
+    <select id = "q6">
+        <option value = "10">Yes</option>
+        <option value = "0">No</option>
+    </select>
+
+
+    <br /><br /><br />
+    <button onclick="calculateRisk()">Calculate Risk</button>
+    <p id="risk"></p>
+    <p id="results"></p>
+
+<script>
+
+function calculateBMI() {
+         var height = Number(document.getElementById("height").value);
+         var heightunits = document.getElementById("heightunits").value;
+         var weight = Number(document.getElementById("weight").value);
+         var weightunits = document.getElementById("weightunits").value;
+
+         if (heightunits == "inches") height /= 39.3700787;
+         if (weightunits == "lb") weight /= 2.20462;
+
+         var BMI = weight /Math.pow(height, 2);
+    document.getElementById("output").innerHTML = Math.round(BMI * 100)/100;
+         if (BMI < 18.5) document.getElementById("comment").innerHTML = "Underweight";
+         if (BMI >= 18.5 && BMI <= 25) document.getElementById("comment").innerHTML = "Normal";
+         if (BMI >= 25 && BMI <= 30) document.getElementById("comment").innerHTML = "Obese";
+         if (BMI > 30) document.getElementById("comment").innerHTML = "Overweight";            
+     }
+       
+        </script>
+    </head>
+    <body>
+         <h1>Body Mass Index Calculator</h1>
+        <p>Enter your height:
+            <input type="text" id="height" />
+            <select type="multiple" id="heightunits">
+                <option value="meters" selected="selected">meters</option>
+                <option value="inches">inches</option>
+            </select>
+        </p>
+        <p>Enter your weight:
+            <input type="text" id="weight" />
+            <select type="multiple" id="weightunits">
+                <option value="kg" selected="selected">kilograms</option>
+                <option value="lb">pounds</option>
+            </select>
+        </p>
+        <input type="button" value="calculateBMI" onclick="calculateBMI()"/>
+         <h1>Your BMI is: <span id="output">?</span></h1>
+
+        <h2>This means you are: value = <span id='comment'></span> </h2> 
+<script>
+console.log("Starting Health Risk Calculator..")
+
+
+function calculateRisk() {
+    const Best_Answers = [
+        0, // question 1 strongly agree
+        0, // question 2 strongly agree
+        0, // question 3 strongly agree
+        0, // question 4 strongly agree
+        0, // question 5 strongly agree
+        0 // question 6 strongly agree
+    ]
+    console.log("calculaterisk()")
+    let question1Response = document.getElementById('q1').selectedOptions[0].value;
+    console.log("R1 = " + question1Response);
+    let question1Text = document.getElementById('q1').selectedOptions[0].Text
+    console.log("R1Text = " + question1Text);
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    console.log("R2 = " + question2Response);
+    let question2Text = document.getElementById('q2').selectedOptions[0].text
+    console.log("R2Text = " + question2Text);
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    console.log("R3 = " + question3Response);
+    let question3Text = document.getElementById('q3').selectedOptions[0].text
+    console.log("R3Text = " + question3Text);
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+    console.log("R4 = " + question4Response);
+    let question4Text = document.getElementById('q4').selectedOptions[0].text
+    console.log("R4Text = " + question4Text);
+    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+    console.log("R5 = " + question5Response);
+    let question5Text = document.getElementById('q5').selectedOptions[0].text
+    console.log("R5Text = " + question5Text);
+    let question6Response = document.getElementById('q6').selectedOptions[0].value;
+    console.log("R6 = " + question6Response);
+    let question6Text = document.getElementById('q6').selectedOptions[0].text
+    console.log("R6Text = " + question6Text);
+    document.getElementById("risk").innerHTML = "Your risk is..."
+
+    let risk1 = (question1Response-Best_Answers[0]);
+    console.log("C1 = " + risk1);
+    let risk2 = (question2Response-Best_Answers[1]);
+    console.log("C2 = " + risk2);
+    let risk3 = (question3Response-Best_Answers[2]);
+    console.log("C3 = " + risk3);
+    let risk4 = (question4Response-Best_Answers[3]);
+    console.log("C4 = " + risk4);
+    let risk5 = (question5Response-Best_Answers[4]);
+    console.log("C5 = " + risk5);
+    let risk6 = (question6Response-Best_Answers[5]);
+    console.log("C6 = " + risk6);
+
+    let totalrisk = (risk1 + risk2 + risk3 + risk4 + risk5 + risk6);
+    totalrisk = totalrisk ;
+    document.getElementById("risk").innerHTML = "Your total risk is: " + totalrisk
+
+
+    {
+    if (totalrisk >= 0 && totalrisk <= 20) {
+    document.getElementById("results").innerHTML = "You are Low Risk!"
+    } else if (totalrisk >= 21 && totalrisk <= 50) {
+    document.getElementById("results").innerHTML = "You are a Moderate Risk, Not Bad :)"
+    } else if (totalrisk >= 51 && totalrisk <= 75){
+    document.getElementById("results").innerHTML = "You are a High Risk for Insurance"
+    } else if (totalrisk >= 76 && totalrisk <= 235){
+    document.getElementById("results").innerHTML = "I'm Sorry, but You are Probably Uninsurable"
+    } 
+}   
+}    
+
+
+</script>
+
+
+
+
+</body>
+</html>
